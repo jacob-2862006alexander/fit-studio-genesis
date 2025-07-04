@@ -2,10 +2,19 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Dumbbell } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { toast } = useToast();
+
+  const handleJoinNow = () => {
+    toast({
+      title: "Welcome to FitStudio!",
+      description: "Thanks for your interest! Our team will contact you soon.",
+    });
+  };
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -44,7 +53,7 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg">
+            <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg">
               Join Now
             </Button>
           </div>
@@ -77,7 +86,7 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button className="bg-gradient-to-r from-primary to-accent text-primary-foreground w-fit">
+              <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground w-fit">
                 Join Now
               </Button>
             </div>

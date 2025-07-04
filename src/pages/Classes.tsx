@@ -2,8 +2,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Clock, Users, Flame, Heart, Zap, Target } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const Classes = () => {
+  const { toast } = useToast();
+
+  const handleBookClass = (className: string) => {
+    toast({
+      title: "Class Booked!",
+      description: `Successfully booked ${className}. Check your email for confirmation.`,
+    });
+  };
+
   const classes = [
     {
       id: 1,
@@ -140,7 +150,10 @@ const Classes = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <Button className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg">
+                    <Button 
+                      onClick={() => handleBookClass(fitnessClass.name)}
+                      className="w-full bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg"
+                    >
                       Book This Class
                     </Button>
                   </CardContent>
