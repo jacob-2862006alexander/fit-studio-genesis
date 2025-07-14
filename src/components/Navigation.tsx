@@ -3,17 +3,16 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Dumbbell } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import JoinModal from "./JoinModal";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
   const location = useLocation();
   const { toast } = useToast();
 
   const handleJoinNow = () => {
-    toast({
-      title: "Welcome to FitStudio!",
-      description: "Thanks for your interest! Our team will contact you soon.",
-    });
+    setJoinModalOpen(true);
   };
 
   const navItems = [
@@ -93,6 +92,8 @@ const Navigation = () => {
           </div>
         )}
       </div>
+      
+      <JoinModal open={joinModalOpen} onOpenChange={setJoinModalOpen} />
     </nav>
   );
 };

@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dumbbell, Users, Award, Clock, Star, ArrowRight, CheckCircle } from "lucide-react";
+import JoinModal from "@/components/JoinModal";
 
 const Index = () => {
+  const [joinModalOpen, setJoinModalOpen] = useState(false);
+
   const features = [
     { icon: Dumbbell, title: "State-of-the-Art Equipment", description: "Latest fitness technology and equipment" },
     { icon: Users, title: "Expert Trainers", description: "Certified professionals to guide your journey" },
@@ -43,7 +47,11 @@ const Index = () => {
               state-of-the-art equipment, and a supportive community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6">
+              <Button 
+                size="lg" 
+                className="bg-white text-primary hover:bg-white/90 text-lg px-8 py-6"
+                onClick={() => setJoinModalOpen(true)}
+              >
                 Start Your Journey
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6">
@@ -204,7 +212,11 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button size="lg" className="bg-white text-primary hover:bg-white/90 text-lg px-8">
+            <Button 
+              size="lg" 
+              className="bg-white text-primary hover:bg-white/90 text-lg px-8"
+              onClick={() => setJoinModalOpen(true)}
+            >
               Join Now
             </Button>
             <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8">
@@ -228,6 +240,8 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <JoinModal open={joinModalOpen} onOpenChange={setJoinModalOpen} />
     </div>
   );
 };
