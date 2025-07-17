@@ -52,9 +52,16 @@ const Navigation = () => {
                 {item.name}
               </Link>
             ))}
-            <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg">
-              Join Now
-            </Button>
+            <div className="flex items-center space-x-3">
+              <Link to="/signin">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  Sign In
+                </Button>
+              </Link>
+              <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground hover:shadow-lg">
+                Join Now
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -85,9 +92,16 @@ const Navigation = () => {
                   {item.name}
                 </Link>
               ))}
-              <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground w-fit">
-                Join Now
-              </Button>
+              <div className="flex flex-col space-y-3">
+                <Link to="/signin">
+                  <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
+                    Sign In
+                  </Button>
+                </Link>
+                <Button onClick={handleJoinNow} className="bg-gradient-to-r from-primary to-accent text-primary-foreground w-full">
+                  Join Now
+                </Button>
+              </div>
             </div>
           </div>
         )}

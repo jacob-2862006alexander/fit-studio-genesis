@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,22 +24,12 @@ const JoinModal = ({ open, onOpenChange }: JoinModalProps) => {
     message: ""
   });
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Welcome to FitStudio!",
-      description: "Thank you for joining! Our team will contact you within 24 hours to schedule your consultation.",
-    });
     onOpenChange(false);
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      goal: "",
-      experience: "",
-      message: ""
-    });
+    navigate('/signup');
   };
 
   const handleChange = (field: string, value: string) => {
@@ -139,8 +130,24 @@ const JoinModal = ({ open, onOpenChange }: JoinModalProps) => {
               Cancel
             </Button>
             <Button type="submit" className="flex-1 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-              Join Now
+              Register Now
             </Button>
+          </div>
+          
+          <div className="text-center pt-2 border-t border-border">
+            <p className="text-sm text-muted-foreground">
+              Already have an account?{" "}
+              <Button 
+                variant="link" 
+                className="p-0 h-auto text-primary font-medium" 
+                onClick={() => {
+                  onOpenChange(false);
+                  navigate('/signin');
+                }}
+              >
+                Sign in here
+              </Button>
+            </p>
           </div>
         </form>
       </DialogContent>
